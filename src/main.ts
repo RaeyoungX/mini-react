@@ -1,15 +1,8 @@
-import { createElement, render } from './react'
-
-let count = 0
-
-function handleClick() {
-  count++
-  console.log('clicked:', count)
-}
+import { createElement, renderWithFiber } from './react'
 
 const vdom = createElement('div', { id: 'app' },
-  createElement('h1', null, 'Hello mini React'),
-  createElement('button', { onClick: handleClick }, 'Click me')
+  createElement('h1', null, 'Hello Fiber'),
+  createElement('p', null, 'rendered with fiber')
 )
 
-render(vdom, document.getElementById('root')!)
+renderWithFiber(vdom, document.getElementById('root')!)
