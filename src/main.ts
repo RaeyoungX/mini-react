@@ -1,8 +1,16 @@
-import { createElement, renderWithFiber } from './react'
+import { createElement, renderWithFiber, useState } from './react'
 
-const vdom = createElement('div', { id: 'app' },
-  createElement('h1', null, 'Hello Fiber'),
-  createElement('p', null, 'rendered with fiber')
+/** @jsx createElement */
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  return createElement('div', null,
+    createElement('h1', null, `Count: ${count}`),
+    createElement('button', { onClick: () => setCount(n => n + 1) }, '+1'),
+  )
+}
+
+renderWithFiber(
+  createElement(Counter, {}),
+  document.getElementById('root')!
 )
-
-renderWithFiber(vdom, document.getElementById('root')!)
